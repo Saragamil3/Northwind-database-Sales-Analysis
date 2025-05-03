@@ -17,10 +17,8 @@ left join 'Order Details' od
 on o.OrderID=od.orderid
 group by 1
 order by 1
-```
 
-- Customer categories
-```sql
+# Customer categories
 create view Customer_categories as 
 select customerid
 , case 
@@ -39,6 +37,9 @@ select Customer_Segments
 from Customer_categories 
 group by Customer_Segments
 ```
+![RFM](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Screenshot%202025-05-03%20175154.png)
+![customer segments](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture1.png)
+![number of customers for each category](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Screenshot%202025-05-03%20174518.png)
 
 - Order Value:
  - High-Value, Medium-Value, Low-Value customers based on their avarage order revenue value
