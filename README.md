@@ -42,7 +42,7 @@ group by Customer_Segments
 ![number of customers for each category](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Screenshot%202025-05-03%20174518.png)
 
 - Order Value:
- - High-Value, Medium-Value, Low-Value customers based on their avarage order revenue value
+   High-Value, Medium-Value, Low-Value customers based on their avarage order revenue value
 ```sql
 create view avarage_order_revenue as
 select o.customerid
@@ -53,9 +53,8 @@ from orders o inner join  'Order Details' od
 on o.OrderID=od.orderid
 group by 1
 order by  avarage_order_revenue
-```
--- customers segmentation 
-```sql
+
+# customers segmentation 
 create view CustomerCategories as 
 select customerid
 ,avarage_order_revenue 
@@ -73,6 +72,6 @@ select CustomerCategory
 from CustomerCategories
 group by 1
 ```
-
+![customers segmentation based on their avarage order revenue value](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture5.png)
 
  
