@@ -91,7 +91,7 @@ limit 10
 - The top 10 most frequently ordered products
   
 ```sql
-# High Sales Volume: Determine the top 10 most frequently ordered products
+--High Sales Volume: Determine the top 10 most frequently ordered products
 create view products_with_high_sales
 as
 select p.productname 
@@ -106,7 +106,7 @@ limit 10
 
 - Slow Movers
 ```sql
-# Slow Movers: Identify products with low sales volume. (5 product)
+--Slow Movers: Identify products with low sales volume. (5 product)
 create view products_with_low_sales_volume as
 select p.productname
 ,count(od.orderid) TotalOrders
@@ -117,4 +117,47 @@ order by  TotalOrders ASC
 limit 5
 ```
 ![products with low sales volume](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture3.png)
- 
+
+ # 3-Order Analysis:
+- Seasonality
+```sql
+--Seasonality: Identify any seasonal fluctuations in order volume
+select strftime('%Y',orderdate) Years
+, count(DISTINCT orderid) NumberOrders
+from orders 
+group by 1 
+```
+![Seasonality](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture4.png)
+
+- The most popular order days
+ ```sql
+ -- 2-Day-of-the-Week Analysis: Determine the most popular order days
+CREATE view popular_order_days as 
+select 
+ case strftime('%w',orderdate) 
+ when '0' then 'Saturday'
+ when '1' then 'Sunday'
+ when '2' then 'Monday'
+ WHEN '3' THEN 'Tuesday'
+ WHEN '4' THEN 'Wednesday'
+ WHEN '5' THEN 'Thursday'
+ WHEN '6' THEN 'Friday'
+ end Day_of_the_week
+, count(DISTINCT orderid) NumberOrders
+from orders 
+group by  Day_of_the_week
+order by NumberOrders DESC
+limit 2
+ ```
+![The most popular order days](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture5.png)
+
+- he distribution of order quantities
+```sql
+--Order Size Analysis: Analyze the distribution of order quantities
+select DISTINCT orderid
+,sum(quantity) Units_Sold
+from 'Order Details'
+group by 1
+order by Units_Sold DESC
+```
+
