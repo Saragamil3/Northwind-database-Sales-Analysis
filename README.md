@@ -160,4 +160,19 @@ from 'Order Details'
 group by 1
 order by Units_Sold DESC
 ```
-
+# 3-Employee Performance
+- Total Revenue Generated
+- Number of orders processed
+- Average order value 
+```sql
+create view Employee_Performance as 
+select concat(e.FirstName,' ', e.LastName) FullName
+,cast(sum(od.unitprice*od.quantity*(1-od.discount)) as int) TotalRevenue
+,count(DISTINCT o.OrderID) TotalOrders
+, cast(sum(od.unitprice*od.quantity*(1-od.discount)) / count(DISTINCT o.OrderID) as int) Average_order_value 
+from Employees e inner join orders o 
+on e.EmployeeID=o.EmployeeID inner join 'Order Details' od 
+on o.OrderID=od.orderid 
+group by FullName
+```
+![Employee Performance](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture6.png)
