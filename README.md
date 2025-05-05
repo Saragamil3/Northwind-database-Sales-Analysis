@@ -151,7 +151,7 @@ limit 2
  ```
 ![The most popular order days](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture5.png)
 
-- he distribution of order quantities
+- Distribution of order quantities
 ```sql
 --Order Size Analysis: Analyze the distribution of order quantities
 select DISTINCT orderid
