@@ -74,7 +74,7 @@ group by 1
 
 # 2- Product Analysis:
 - The top 10 revenue generator products
-- 
+  
 ```sql
 #High Revenue Value: Identify the top 10 revenue generator products.
 create view products_with_high_revenue as 
@@ -89,7 +89,7 @@ limit 10
 ![The top 10 revenue generator products](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture2.png)
 
 - The top 10 most frequently ordered products
-- 
+  
 ```sql
 # High Sales Volume: Determine the top 10 most frequently ordered products
 create view products_with_high_sales
