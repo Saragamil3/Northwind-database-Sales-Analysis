@@ -74,7 +74,8 @@ group by 1
 
 # 2- Product Analysis:
 - The top 10 revenue generator products
-  ```sql
+- 
+```sql
 #High Revenue Value: Identify the top 10 revenue generator products.
 create view products_with_high_revenue as 
 select p.productname
@@ -84,12 +85,13 @@ on p.ProductID= od.productid
 group by 1
 order by TotalRevenue DESC
 limit 10
-  ```
+```
 ![The top 10 revenue generator products](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture2.png)
 
 - The top 10 most frequently ordered products
+- 
 ```sql
--- 2- High Sales Volume: Determine the top 10 most frequently ordered products
+# High Sales Volume: Determine the top 10 most frequently ordered products
 create view products_with_high_sales
 as
 select p.productname 
