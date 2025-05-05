@@ -37,8 +37,6 @@ select Customer_Segments
 from Customer_categories 
 group by Customer_Segments
 ```
-![RFM](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Screenshot%202025-05-03%20175154.png)
-![customer segments](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture1.png)
 ![number of customers for each category](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Screenshot%202025-05-03%20174518.png)
 
 - Order Value:
@@ -74,4 +72,47 @@ group by 1
 ```
 ![customers segmentation based on their avarage order revenue value](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture5.png)
 
+# 2- Product Analysis:
+- The top 10 revenue generator products
+  ```sql
+#High Revenue Value: Identify the top 10 revenue generator products.
+create view products_with_high_revenue as 
+select p.productname
+,cast(sum(od.unitprice*od.quantity*(1-od.discount)) as int) as TotalRevenue
+from Products p inner join 'Order Details' od
+on p.ProductID= od.productid 
+group by 1
+order by TotalRevenue DESC
+limit 10
+  ```
+![The top 10 revenue generator products](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture2.png)
+
+- The top 10 most frequently ordered products
+```sql
+-- 2- High Sales Volume: Determine the top 10 most frequently ordered products
+create view products_with_high_sales
+as
+select p.productname 
+,count( distinct od.orderid) TotalOrders
+from Products p inner join 'Order Details' od
+on p.ProductID= od.productid 
+group by 1
+order by  TotalOrders DESC
+limit 10
+```
+![Determine the top 10 most frequently ordered products](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture1.png)
+
+- Slow Movers
+```sql
+# Slow Movers: Identify products with low sales volume. (5 product)
+create view products_with_low_sales_volume as
+select p.productname
+,count(od.orderid) TotalOrders
+from Products p inner join 'Order Details' od
+on p.ProductID= od.productid 
+group by 1
+order by  TotalOrders ASC
+limit 5
+```
+![products with low sales volume](https://github.com/Saragamil3/Northwind-database-Sales-Analysis/blob/main/Picture3.png)
  
