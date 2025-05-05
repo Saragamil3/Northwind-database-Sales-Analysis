@@ -1,4 +1,4 @@
-# Northwind Public Database 
+# Northwind Public Database (SQLITE)
 # 1- Customer Segmentation
 - RFM Analysis:
   - Recency: Days since last order
